@@ -33,9 +33,13 @@ const newsSchema = new mongoose.Schema({
   },
   isPremium: {
     type: Boolean,
-    default: true
+    default: false
   },
   views: {
+    type: Number,
+    default: 0
+  },
+  likesCount: {
     type: Number,
     default: 0
   },
@@ -47,11 +51,21 @@ const newsSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now
   }
+});
+
+newsSchema.pre('save', function() {
+  this.updatedAt = new Date();
 });
 
 newsSchema.index({ createdAt: -1 });
 newsSchema.index({ category: 1 });
 newsSchema.index({ isBreaking: 1 });
+newsSchema.index({ author: 1 });
+newsSchema.index({ likesCount: -1 });
 
 module.exports = mongoose.model('News', newsSchema);

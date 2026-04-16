@@ -30,6 +30,9 @@ services:
       - MONGODB_URI=mongodb://mongodb:27017/newspulse
       - JWT_SECRET=newspulse-super-secret-jwt-key-2024
       - CLIENT_URL=http://localhost:3000
+      - API_BASE_URL=http://localhost:5000
+    volumes:
+      - ./server/uploads:/app/uploads
     ports:
       - "5000:5000"
     depends_on:
