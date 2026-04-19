@@ -4,6 +4,4 @@ A modern, full-stack news platform with YouTube-like monetization, subscriber sy
 
 ---
 Working On....
----
 
-MIT License - feel free to use this project for personal or commercial purposes.
