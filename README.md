@@ -102,7 +102,7 @@ docker-compose down -v
 
 1. **Clone the repository**
 ```bash
-cd /home/mishkat/Downloads/myweb
+cd myweb
 ```
 
 2. **Set up the backend**
