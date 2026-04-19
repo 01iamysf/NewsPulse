@@ -56,7 +56,7 @@ A modern, full-stack news platform with YouTube-like monetization, subscriber sy
 
 ```bash
 # Navigate to project directory
-cd /home/mishkat/Downloads/myweb
+cd myweb
 
 # Build and start all containers
 docker-compose up -d --build
