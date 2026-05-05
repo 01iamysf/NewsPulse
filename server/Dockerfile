@@ -13,4 +13,4 @@ COPY . .
 EXPOSE 5000
 
 # Run seed first, then start server
-CMD node seed.js && npm start
+CMD ["sh", "-c", "node seed.js && npm start"]

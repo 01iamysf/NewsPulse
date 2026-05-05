@@ -68,6 +68,61 @@ router.get('/', async (req, res) => {
   }
 });
 
+// GET /users/admin/list (Admin only - includes inactive users)
+router.get('/admin/list', adminAuth, async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 20;
+    const search = req.query.search;
+
+    const query = { role: 'user' };
+    if (search) {
+      query.$or = [
+        { name: { $regex: search, $options: 'i' } },
+        { email: { $regex: search, $options: 'i' } }
+      ];
+    }
+
+    const users = await User.find(query)
+      .select('-password')
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * limit)
+      .limit(limit);
+
+    const total = await User.countDocuments(query);
+
+    res.json({
+      users,
+      pagination: {
+        page,
+        limit,
+        total,
+        pages: Math.ceil(total / limit)
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// PUT /users/admin/:id/status (Admin only)
+router.put('/admin/:id/status', adminAuth, async (req, res) => {
+  try {
+    const { isActive } = req.body;
+    const user = await User.findByIdAndUpdate(
+      req.params.id,
+      { isActive },
+      { new: true }
+    ).select('-password');
+    
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    
+    res.json({ user, message: `User ${isActive ? 'activated' : 'deactivated'} successfully` });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 // GET /users/me (current user)
 router.get('/me', auth, async (req, res) => {
   try {
