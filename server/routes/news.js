@@ -153,7 +153,13 @@ router.get('/', optionalAuth, async (req, res) => {
     const search = req.query.search;
     const authorId = req.query.author;
 
+    const isAuthenticated = !!req.user;
     const query = {};
+
+    // GUEST RESTRICTION: Only see 4 breaking news items
+    if (!isAuthenticated) {
+      query.isBreaking = true;
+    }
 
     if (category && category !== 'All') {
       query.category = category;
@@ -170,14 +176,17 @@ router.get('/', optionalAuth, async (req, res) => {
       query.author = authorId;
     }
 
+    // GUEST LIMIT: Enforce limit of 4 for non-logged in users
+    const finalLimit = isAuthenticated ? limit : 4;
+    const finalPage = isAuthenticated ? page : 1;
+
     const total = await News.countDocuments(query);
     const news = await News.find(query)
       .populate('author', 'name profile.avatar stats.followersCount monetization.isEnabled')
       .sort({ createdAt: -1 })
-      .skip((page - 1) * limit)
-      .limit(limit);
+      .skip((finalPage - 1) * finalLimit)
+      .limit(finalLimit);
 
-    let isAuthenticated = !!req.user;
     let userLikedNews = [];
 
     if (isAuthenticated) {
