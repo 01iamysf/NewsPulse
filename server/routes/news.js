@@ -172,7 +172,7 @@ router.get('/', optionalAuth, async (req, res) => {
 
     const total = await News.countDocuments(query);
     const news = await News.find(query)
-      .populate('author', 'name profile.avatar stats.followersCount')
+      .populate('author', 'name profile.avatar stats.followersCount monetization.isEnabled')
       .sort({ createdAt: -1 })
       .skip((page - 1) * limit)
       .limit(limit);
@@ -236,9 +236,22 @@ router.get('/:id', optionalAuth, async (req, res) => {
       isLiked = !!like;
     }
 
-    await User.findByIdAndUpdate(news.author._id, {
-      $inc: { 'stats.totalViewsReceived': 1 }
-    });
+    // ─────────────────────────────────────────────────────────────
+    // Earnings Logic: Increment totalEarnings if monetization is enabled
+    // ─────────────────────────────────────────────────────────────
+    if (news.author.monetization?.isEnabled) {
+      const EARNINGS_PER_VIEW = 0.01; // $10 CPM
+      await User.findByIdAndUpdate(news.author._id, {
+        $inc: { 
+          'stats.totalViewsReceived': 1,
+          'monetization.totalEarnings': EARNINGS_PER_VIEW 
+        }
+      });
+    } else {
+      await User.findByIdAndUpdate(news.author._id, {
+        $inc: { 'stats.totalViewsReceived': 1 }
+      });
+    }
 
     res.json({
       ...news.toObject(),

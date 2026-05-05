@@ -207,6 +207,13 @@ router.put('/:id/status', auth, async (req, res) => {
       return res.status(404).json({ message: 'Withdrawal not found' });
     }
 
+    // Only increment withdrawnAmount if we are transitioning TO 'paid' from something else
+    if (status === 'paid' && withdrawal.status !== 'paid') {
+      await User.findByIdAndUpdate(withdrawal.user, {
+        $inc: { 'monetization.withdrawnAmount': withdrawal.amount }
+      });
+    }
+
     withdrawal.status = status;
     if (transactionId) withdrawal.transactionId = transactionId;
     if (notes) withdrawal.notes = notes;
@@ -215,12 +222,6 @@ router.put('/:id/status', auth, async (req, res) => {
     }
 
     await withdrawal.save();
-
-    if (status === 'paid') {
-      await User.findByIdAndUpdate(withdrawal.user, {
-        $inc: { 'monetization.withdrawnAmount': withdrawal.amount }
-      });
-    }
 
     res.json({
       message: 'Withdrawal status updated',
