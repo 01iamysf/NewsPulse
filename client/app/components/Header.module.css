@@ -1,0 +1,329 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 20px 0;
+  transition: all 0.3s ease;
+}
+
+.scrolled {
+  background: rgba(10, 10, 15, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 12px 0;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logoIcon {
+  width: 40px;
+  height: 40px;
+  background: var(--gradient-hero);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  color: white;
+}
+
+.logoText {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  letter-spacing: 2px;
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+@media (max-width: 900px) {
+  .nav {
+    display: none;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .actions {
+    display: none;
+  }
+}
+
+.userMenu {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.userBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-tertiary);
+  border-radius: 50%;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.userBtn:hover {
+  background: var(--bg-secondary);
+}
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.createBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--gradient-hero);
+  border-radius: 50%;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.createBtn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 20px rgba(255, 51, 102, 0.4);
+}
+
+.navBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-tertiary);
+  border-radius: 10px;
+  color: var(--text-secondary);
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.navBtn:hover {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+/* Active page highlight — glowing accent ring */
+.navBtn.active,
+.avatarBtn.active,
+.adminBtn.active {
+  background: rgba(255, 51, 102, 0.15);
+  color: var(--accent-primary);
+  box-shadow: 0 0 0 2px var(--accent-primary);
+}
+
+/* Avatar button — shows profile photo */
+.avatarBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-tertiary);
+  border-radius: 50%;
+  color: var(--text-secondary);
+  overflow: hidden;
+  transition: all 0.25s ease;
+  border: 2px solid transparent;
+}
+
+.avatarBtn:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+}
+
+.avatarBtn.active {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px rgba(255, 51, 102, 0.4);
+}
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.adminBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 208, 0, 0.15);
+  color: var(--accent-tertiary);
+  border-radius: 10px;
+  transition: all 0.25s ease;
+}
+
+.adminBtn:hover {
+  background: var(--accent-tertiary);
+  color: var(--bg-primary);
+  transform: translateY(-2px);
+}
+
+.adminBtn.active {
+  background: var(--accent-tertiary);
+  color: var(--bg-primary);
+  box-shadow: 0 0 0 2px var(--accent-tertiary);
+}
+
+.logoutBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+.logoutBtn:hover {
+  background: var(--accent-primary);
+  color: white;
+}
+
+.authBtns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.authButtons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.createBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--gradient-hero);
+  border-radius: 10px;
+  color: white;
+  transition: all 0.25s ease;
+}
+
+.createBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(255, 51, 102, 0.5);
+}
+
+.createBtnActive {
+  box-shadow: 0 0 0 2px white, 0 0 0 4px var(--accent-primary);
+}
+
+/* Active indicator for text nav links */
+.activeNavLink {
+  color: var(--text-primary) !important;
+}
+
+.activeNavLink::after {
+  width: 100% !important;
+}
+
+
+.mobileAuthButtons {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.mobileAuthButtons .btn {
+  flex: 1;
+}
+
+.menuToggle {
+  display: none;
+  background: transparent;
+  color: var(--text-primary);
+  padding: 8px;
+}
+
+@media (max-width: 900px) {
+  .menuToggle {
+    display: flex;
+  }
+}
+
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-primary);
+  z-index: 99;
+  padding: 100px 24px 24px;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+
+.mobileMenu.open {
+  transform: translateX(0);
+}
+
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mobileNav a {
+  font-size: 24px;
+  font-weight: 600;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.mobileAuth {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 32px;
+}

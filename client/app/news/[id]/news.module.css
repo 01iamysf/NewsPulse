@@ -1,0 +1,262 @@
+.main {
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+.loadingPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notFound {
+  text-align: center;
+  padding: 120px 24px;
+}
+
+.notFound h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.notFound p {
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+}
+
+.article {
+  position: relative;
+}
+
+.heroImage {
+  position: relative;
+  height: 50vh;
+  min-height: 400px;
+  max-height: 600px;
+  overflow: hidden;
+}
+
+.heroImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 0%, var(--bg-primary) 90%);
+}
+
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+  position: relative;
+  margin-top: -100px;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: 24px;
+  transition: color 0.3s ease;
+}
+
+.backLink:hover {
+  color: var(--accent-primary);
+}
+
+.meta {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.subMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 32px;
+}
+
+.subMeta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.excerpt {
+  font-size: 22px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+  font-weight: 400;
+}
+
+.body {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--text-primary);
+}
+
+.body p {
+  margin-bottom: 24px;
+}
+
+.body p:last-child {
+  margin-bottom: 0;
+}
+
+.lockedContent {
+  padding: 60px 0;
+}
+
+.lockedBox {
+  text-align: center;
+  padding: 60px 40px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+}
+
+.lockedBox svg {
+  color: var(--accent-primary);
+  margin-bottom: 24px;
+}
+
+.lockedBox h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  margin-bottom: 16px;
+}
+
+.lockedBox p {
+  color: var(--text-secondary);
+  max-width: 400px;
+  margin: 0 auto 32px;
+}
+
+.loginPrompt {
+  margin-top: 24px;
+  font-size: 14px;
+}
+
+.loginPrompt a {
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border-color);
+}
+
+.authorSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+.authorInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.authorAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--gradient-hero);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.authorAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.authorName {
+  display: block;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.authorFollowers {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.related {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+.related h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  margin-bottom: 32px;
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 1000px) {
+  .relatedGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .relatedGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .subMeta {
+    gap: 12px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}
